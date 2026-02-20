@@ -3,7 +3,7 @@ title: "はじめてのZenn記事"
 emoji: "🚀"
 type: "tech"
 topics: ["zenn", "初心者"]
-published: true
+published: false
 ---
 
 ## はじめに
