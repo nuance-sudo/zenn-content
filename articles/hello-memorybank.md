@@ -8,7 +8,7 @@ published: false
 
 ## 1. はじめに
 
-先日の「第4回 Agentic AI Hackathon with Google Cloud」に参加し、絵のコーチングエージェント「Art coachIng」を開発しました。その際、ユーザーの過去の評価や成長記録を保持するために Vertex AI Agent Engine の「Memory Bank」機能を利用しました。
+先日の[「第4回 Agentic AI Hackathon with Google Cloud」](https://zenn.dev/hackathons/google-cloud-japan-ai-hackathon-vol4?tab=overview)に参加し、絵のコーチングエージェント[Art coachIng](https://zenn.dev/nuance/articles/bed956f867e4a4)を開発しました。その際、ユーザーの過去の評価や成長記録を保持するために Vertex AI Agent Engine の「Memory Bank」機能を利用しました。
 
 Memory Bank はマネージドサービスとして非常に便利で、複雑なメモリ管理のロジックを意識せずに実装できたのですが、ハッカソン中は「とにかく動かすこと」を優先してしまい、裏側の仕組みを体系的に学習できていませんでした。
 
@@ -392,3 +392,17 @@ response = client.agent_engines.memories.retrieve(
 ![セマンティック検索の実行結果](/images/hello-memorybank/retrieve-semantic-search.png)
 
 *クエリごとに意味的に近い記憶が `distance`（ユークリッド距離）の昇順で返されている*
+
+## まとめ
+
+今回、Memory Bank の仕組みを一通り整理してみて、メモリの保存・統合・検索にまつわる複雑なロジックをマネージドサービスに任せられる点が最大の魅力だと感じました。一方で、統合戦略やスコープ設計など、「どう記憶を構造化するか」は開発者側の設計判断に委ねられており、ここを事前に考えておかないと後から苦労しそうだということも実感しました。
+
+本記事の内容は、[学習用リポジトリ](https://github.com/nuance-sudo/hello-memorybank)で実際に手を動かしながらまとめたものです。もし誤りや補足がありましたら、コメントでご指摘いただけると嬉しいです。
+
+## 参考
+
+- [Memory Bank の概要 | Vertex AI Agent Engine](https://docs.cloud.google.com/agent-builder/agent-engine/memory-bank/overview?hl=ja)
+- [メモリの生成 | Vertex AI Agent Engine](https://docs.cloud.google.com/agent-builder/agent-engine/memory-bank/generate-memories?hl=ja)
+- [メモリの取得 | Vertex AI Agent Engine](https://docs.cloud.google.com/agent-builder/agent-engine/memory-bank/fetch-memories?hl=ja)
+
+
