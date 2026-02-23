@@ -71,6 +71,12 @@ session = sessions_client.create_session(
 
 このように設定することで、「発注システム」と「在庫管理システム」など、複数のアプリケーション間で記憶が混ざるのを防ぐだけでなく、後から特定のコンテキストに絞って的確にメモリを引き出せるようになります。
 
+**【コンソールでの確認】**
+
+実際に生成されたメモリをコンソールで確認すると、スコープ（`system_id: order_management`, `user_id: user_123`）が正しく設定されていることがわかります。
+
+![生成されたメモリの例：スコープや事実が構造化されて保存されている](/images/hello-memorybank/consolidation-before.png)
+
 ### ② 記憶対象を決める「トピック（Topics）」
 
 会話履歴をすべて保存すると、挨拶などのノイズでデータベースが溢れてしまいます。Memory Bank には「**トピック（Topics）**」という概念があり、会話の中から「どの情報をピックアップして記憶に残すか」を自動で制御できます。
@@ -135,6 +141,15 @@ Memory Bank の統合機能は、会話から新しく抽出された情報と�
 - **今回の会話**：「来月からA4用紙の業者はC社に変更して」
 - **Memory Bank の動作**：単に「C社」という新しい記憶を追加するのではなく、文脈を理解し、既存の「A社」の記憶を「C社」に更新（UPDATED）します。
 
+**【コンソールでの確認】**
+
+統合後のメモリをコンソールで確認すると、事実が「来月からA4用紙の業者はC社です。」に更新されていることがわかります。
+
+![統合後：「来月からA4用紙の業者はC社です。」に更新された記憶](/images/hello-memorybank/consolidation-after.png)
+
+> [!NOTE]
+> 実際に試してみると、内部的には既存メモリの**削除（DELETED）→ 新規作成（CREATED）**という2ステップで処理されていました。
+
 つまり `GenerateMemories` を活用すれば、開発者は「過去の類似メモリを探し出し、LLM に変更箇所を判定させ、古いレコードを削除・更新する」という非常に複雑な記憶のライフサイクル管理ロジックを一切書く必要がなくなります。
 
 ### ⑥ メタデータ（Metadata）の付与
@@ -157,6 +172,12 @@ agent_engine_client.generate_memories(
     }
 )
 ```
+
+**【実行結果の例】**
+
+![メタデータ付きメモリ生成の実行結果](/images/hello-memorybank/metadata-generate.png)
+
+*メタデータ（department, item_category）が付与された状態でメモリが生成されている*
 
 このようにメタデータを設定しておけば、ユーザーが「営業部の備品を追加で頼みたい」とリクエストした際に、発注システム全体の記憶から探すのではなく、「営業部」かつ「文房具」のメタデータを持つ記憶だけをピンポイントで取得できます。
 
@@ -267,6 +288,12 @@ session = sessions_client.create_session(
 
 「スコープは越えられない壁、メタデータは柔軟なフィルタ」という役割分担を意識して設計することで、取得ロジックが格段に扱いやすくなります。
 
+**【実行結果の例】**
+
+![スコープの完全一致制約の確認結果](/images/hello-memorybank/retrieve-scope-constraint.png)
+
+*存在しない `user_id` や、複合キーの部分一致では取得できないことが確認できる*
+
 ### ③ 2種類のフィルタリング
 
 Memory Bank には、目的の記憶を絞り込むための2種類のフィルタが用意されています。これらは組み合わせて使用できます。
@@ -323,6 +350,20 @@ response = client.agent_engines.memories.retrieve(
 )
 ```
 
+**【実行結果の例】**
+
+システムフィールドフィルタによる絞り込み結果：
+
+![システムフィールドフィルタの実行結果](/images/hello-memorybank/retrieve-system-filter.png)
+
+*`fact` の部分一致や `create_time` の範囲指定で記憶を絞り込んでいる*
+
+カスタムトピックによるフィルタリング結果：
+
+![トピックフィルタの実行結果](/images/hello-memorybank/retrieve-topic-filter.png)
+
+*カスタムトピック `ordering_rules` で絞り込んだ結果*
+
 ### ④ セマンティック検索（類似性検索）
 
 Memory Bankでは、`similarity_search_params` を指定することでセマンティック検索（類似性検索）が可能です 。
@@ -345,3 +386,9 @@ response = client.agent_engines.memories.retrieve(
     }
 )
 ```
+
+**【実行結果の例】**
+
+![セマンティック検索の実行結果](/images/hello-memorybank/retrieve-semantic-search.png)
+
+*クエリごとに意味的に近い記憶が `distance`（ユークリッド距離）の昇順で返されている*
