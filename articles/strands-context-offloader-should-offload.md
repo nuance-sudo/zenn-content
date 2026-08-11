@@ -2,7 +2,7 @@
 title: "Strands Agentsのshould_offloadでツール結果を選択的にオフロードする"
 emoji: "📦"
 type: "tech"
-topics: ["context", "rag", "agent", "aws", "strandsagent"]
+topics: ["context", "rag", "agent", "aws", "strandsagents"]
 published: true
 ---
 
