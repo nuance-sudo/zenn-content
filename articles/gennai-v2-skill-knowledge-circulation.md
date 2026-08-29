@@ -1,8 +1,8 @@
 ---
-title: "源内v2が目指す知識循環──職員の暗黙知をAIエージェントのスキルに変え、政府全体の集合知へ"
+title: "源内v2は職員の暗黙知をどう組織の集合知に変えるのか"
 emoji: "🏛️"
-type: "tech"
-topics: ["生成AI", "AIエージェント", "源内", "デジタル庁", "ナレッジマネジメント"]
+type: "idea"
+topics: ["生成AI", "AIエージェント", "strandsagents", "agentcore", "源内"]
 published: true
 ---
 
