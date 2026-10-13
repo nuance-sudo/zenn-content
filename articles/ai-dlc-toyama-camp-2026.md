@@ -2,7 +2,7 @@
 title: "AI-DLC富山合宿に参加してみた"
 emoji: "🏕️"
 type: "idea"
-topics: ["aidlc", "aws", "生成AI", "Kiro", "イベントレポート"]
+topics: ["aidlc", "aws", "生成AI", "Kiro", "JAWSUG"]
 published: false
 ---
 
