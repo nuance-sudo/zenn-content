@@ -42,7 +42,7 @@ AI-DLCは、AIが開発プロセスを主導し、人間が検証や意思決定
 
 開発には、AI-DLCを実践するためのOSS `aidlc-workflows` を使いました。このツールでは、実施する工程を「スコープ」という設定で選べます。[^aidlc][^scopes]
 
-Ideation（企画）では、解決したい課題の整理や市場調査、実現可能性の検討などを行いますが、今回はこのフェーズを省き、要件定義から設計・実装・テストへと進める `classic` スコープを選びました。[^scopes][^scope]
+Ideation（企画）では、解決したい課題の整理や市場調査、実現可能性の検討などを行いますが、今回はこのフェーズを省き、要件定義から設計・実装・テストへと進める `classic` スコープを選びました。[^scopes]
 
 まずはAIが出す質問をもとに、誰が使うのか、どんな機能が必要か、今回はどこまで作るのかをチームで話し合いました。その内容を要件として整理し、設計、実装へと進めていきました。
 
@@ -58,13 +58,13 @@ Ideation（企画）では、解決したい課題の整理や市場調査、実
 
 AIの質問に順番に答えるというより、AIも交えてブレインストーミングをしている感覚でした。
 
-例えば、旅行の日程をどう入力してもらうか、という質問がありました。「2泊3日」のように日数だけを指定するのか、それとも出発日と帰着日を選ぶのか、という選択です。[^questions]
+例えば、旅行の日程をどう入力してもらうか、という質問がありました。「2泊3日」のように日数だけを指定するのか、それとも出発日と帰着日を選ぶのか、という選択です。
 
 チームでは「旅行には季節感も重要だよね」という話になり、具体的な日付を選ぶ形式にしました。同じ2泊3日でも、いつ行くかによって楽しみたいことは変わります。
 
 入力フォームの仕様を選びながら、「どんな旅行体験を提供したいか」を話し合っていました。座学で聞いた、ビジネス側も巻き込んで価値を考えるという話が、この場面で腑に落ちました。業務やサービスに詳しい人も一緒に参加できると、この場の価値はさらに大きくなりそうです。
 
-例えば「予算」も、一人分なのかグループ全体なのかで意味が変わります。AIの問いをきっかけに認識をそろえていくのは、チーム内でユビキタス言語を作るのにもよさそうです。[^ubiquitous]
+例えば「予算」も、一人分なのかグループ全体なのかで意味が変わります。AIの問いをきっかけに認識をそろえていくのは、チーム内でユビキタス言語を作るのにもよさそうです。
 
 ### 「5分に一回はAIに質問しましょう」
 
@@ -76,7 +76,7 @@ AIの質問に順番に答えるというより、AIも交えてブレインス�
 
 もう一つ印象に残ったのは、要件定義で決めたことが、後の成果物にも反映されていたことです。
 
-1日目に決めた要件をもとに、扱うデータや各機能の役割、機能同士の連携方法が整理されました。開発する単位も決まり、具体的な処理のルールやコードにつながっていきました。[^design][^units]
+1日目に決めた要件をもとに、扱うデータや各機能の役割、機能同士の連携方法が整理されました。開発する単位も決まり、具体的な処理のルールやコードにつながっていきました。
 
 ### 日付入力の話が、コードになるまで
 
@@ -93,10 +93,10 @@ AIの質問に順番に答えるというより、AIも交えてブレインス�
 
 | 進めたこと | 日付入力の例 |
 | --- | --- |
-| 要件をまとめる | 出発日と帰着日を入力できることを要件にし、過去の日付などは受け付けないと決める。[^requirements] |
-| 仕組みを設計する | 出発日と帰着日を旅行条件のデータとして持たせ、各機能に渡す形を決める。入力内容を確認する機能の役割も決める。[^domain-contract] |
-| 処理を具体化する | 出発日が過去の日付、または帰着日が出発日より前なら、入力エラーとして理由を返す処理を決める。[^rules] |
-| コードを書く | 決めたルールに沿って、日付を確認し、問題があればエラーを返す処理を実装する。[^code] |
+| 要件をまとめる | 出発日と帰着日を入力できることを要件にし、過去の日付などは受け付けないと決める。 |
+| 仕組みを設計する | 出発日と帰着日を旅行条件のデータとして持たせ、各機能に渡す形を決める。入力内容を確認する機能の役割も決める。 |
+| 処理を具体化する | 出発日が過去の日付、または帰着日が出発日より前なら、入力エラーとして理由を返す処理を決める。 |
+| コードを書く | 決めたルールに沿って、日付を確認し、問題があればエラーを返す処理を実装する。 |
 
 設計文書には、それぞれの処理がどの要件に基づくものかも記録されていました。「この処理は、何のためにあるのか」を、元の要件までさかのぼって確かめられます。
 
@@ -120,7 +120,7 @@ AIは次々に成果物を作ってくれますが、その内容を読み、理
 
 レビューの量に加えて、どんなものができあがるのか、イメージをつかみにくいまま進むのもつらかったです。
 
-今回の進め方では、動くものが見えてくるのは終盤でした。計画でも、画面を作るのは最後でした。画面から結果が出るまでの一連の流れを、先に動かして確かめる進め方にはしていませんでした。[^delivery-ui]
+今回の進め方では、動くものが見えてくるのは終盤でした。計画でも、画面を作るのは最後でした。画面から結果が出るまでの一連の流れを、先に動かして確かめる進め方にはしていませんでした。
 
 設計は進んでいても、自分の中で完成像がはっきりしているとは限りません。その状態で細かな確認が続くと、「この判断が、できあがるものにどう関係するのか」まで考える負担があります。AI-DLC全般というより、今回の計画や進め方も含めた感想です。
 
@@ -136,7 +136,7 @@ AIは次々に成果物を作ってくれますが、その内容を読み、理
 
 分からないところをどうAIに聞くか。どの判断に時間を使うか。出力の量に追いつかなくなったらどうするか。ツールの操作だけでなく、こうした進め方も含めて経験する必要がありそうです。
 
-AI-DLCをチームで体験するワークショップとして、Unicorn Gymも開催されています。[^gym] 会社に広めるなら、こうした場や経験者に伴走してもらえる機会を使い、小さなテーマで一度流れを体験するところから始めたいです。
+AI-DLCをチームで体験するワークショップとして、Unicorn Gymも開催されています。 会社に広めるなら、こうした場や経験者に伴走してもらえる機会を使い、小さなテーマで一度流れを体験するところから始めたいです。
 
 ## おわりに
 
@@ -146,25 +146,7 @@ AI-DLCをチームで体験するワークショップとして、Unicorn Gymも
 
 講師の福井さん、運営の皆さん、一緒に開発したチームの皆さん、ありがとうございました。
 
-<!-- 出典の管理
-チームリポジトリ: https://github.com/ssakita555/aidlc-toyama-team-c
-参照対象: 提供されたZIPのスナップショット。GitHubの最新状態ではない。
-ZIPコメント内の識別子: 5ba99779d83245df8e87dbeac408ea791a443484
-参照ファイルのパスを脚注に残す。公開記事の読者がアクセスできる参照方法は、チームの公開方針に合わせて調整する。
--->
-
-[^event]: [JAWS-UG 富山#7 AI-DLC富山合宿](https://jawsug-toyama.connpass.com/event/396805/)。参加日の記述は本人の参加記録に基づく。
+[^event]: [JAWS-UG 富山#7 AI-DLC富山合宿](https://jawsug-toyama.connpass.com/event/396805/)。
 [^fde]: FDEの役割の参考: Palantirの公式求人 [Forward Deployed Software Engineer](https://jobs.lever.co/palantir/dab396d4-2f14-4796-aac0-0d82883dccf0)。顧客と協働して課題を理解し、設計・実装・展開まで担う役割として説明されている。具体的な職務範囲は企業により異なり、本記事ではこの働き方への関心を述べている。
-[^scope]: チームの成果物 `aidlc/spaces/default/intents/261010-random-travel-planner/inception/requirements-analysis/requirements.md` の「Sources」に `Workflow-selected scope: classic` と記載。
 [^aidlc]: [AI駆動開発ライフサイクル（AI-DLC）入門 ― 開発の未来を形づくる新しいアプローチ](https://builder.aws.com/content/3I4y1lREHN7C6CA0oS6zOgLh7jA/aiai-dlc)。ツールは [awslabs/aidlc-workflows](https://github.com/awslabs/aidlc-workflows)。
-[^questions]: `aidlc/spaces/default/intents/261010-random-travel-planner/inception/requirements-analysis/requirements-analysis-questions.md`、Q4。Aが出発日・帰着日、Bが日数のみ。回答は `A,D,E`。
-[^design]: `aidlc/spaces/default/intents/261010-random-travel-planner/inception/domain-design/components.md`、`inception/contract-design/contract-summary.md`、`construction/draw/functional-design/rules.md`。後二つのパスも同じintent配下。
-[^requirements]: `aidlc/spaces/default/intents/261010-random-travel-planner/inception/requirements-analysis/requirements.md`、FR1.1・FR1.7。
-[^domain-contract]: `aidlc/spaces/default/intents/261010-random-travel-planner/inception/domain-design/components.md` の `TripRequest`、`aidlc/spaces/default/intents/261010-random-travel-planner/inception/contract-design/contract-summary.md` の共通型 `TripCondition` と契約K4。
-[^rules]: `aidlc/spaces/default/intents/261010-random-travel-planner/construction/draw/functional-design/rules.md` のBR3.3。`source: [FR1.7, AC2.1.4]` を記載。同ディレクトリの `traceability.json` にもAC2.1.4とBR3.3の対応がある。
-[^code]: `src/draw/trip-request.ts` の `validateTripCondition`。ここでの確認は文書・コードの静的な読み取りであり、アプリ全体の完成やテストの再実行を報告するものではない。
-[^delivery-ui]: `aidlc/spaces/default/intents/261010-random-travel-planner/inception/delivery-planning/bolt-plan.md` の「方針」とB4。最初に一連の流れを通すwalking skeletonを使わないことと、UIが最後のユニットであることを記載。
-[^gym]: [9 社合同 AI-DLC Unicorn Gym：AI と作った 2 日間で見えた、「書く」から「決める」への転換](https://aws.amazon.com/jp/blogs/news/joint-ai-dlc-unicorn-gym-202606/)。
-[^units]: `aidlc/spaces/default/intents/261010-random-travel-planner/inception/units-generation/unit-of-work.md` のユニット一覧と配置方針。4ユニットは一つのWebアプリ内で、関数呼び出しによって連携する。
 [^scopes]: `aidlc-workflows` の公式ガイド [Scopes and Depth](https://awslabs.github.io/aidlc-workflows/guide/05-scopes-and-depth/) と [Phases and Stages](https://awslabs.github.io/aidlc-workflows/guide/04-phases-and-stages/)。スコープは実施する工程を選ぶ設定。ここでは、今回省いたIdeationの内容とclassicの対象範囲を紹介している。
-[^ubiquitous]: 用語の参考: Martin Fowler, [Ubiquitous Language](https://martinfowler.com/bliki/UbiquitousLanguage.html)。予算についての確認は、チームの成果物 `aidlc/spaces/default/intents/261010-random-travel-planner/inception/requirements-analysis/requirements-analysis-questions.md` の追加質問F2にも記録されている。
